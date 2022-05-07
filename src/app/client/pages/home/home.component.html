@@ -762,7 +762,7 @@
                     <div class="title title--normal title--thin">New Arrivals</div>
                     <div class="title title--normal title--regular">Get Amazing PC Now</div>
                     <div class="title title--description">Sale Offer <span>-20% Off</span> This Week</div>
-                    <a href="single-1.html"
+                    <a [routerLink]="['/shop']"
                       class="btn btn--box btn--large btn--blue btn--uppercase btn--weight">Shopping Now</a>
                   </div>
                 </div>
@@ -778,12 +778,26 @@
                     <div class="title title--normal title--white title--regular">Drone Expert Services</div>
                     <div class="title title--description title--white">Sale Offer <span class="title--white">-20%
                         Off</span> This Week</div>
-                    <a href="single-1.html"
+                    <a [routerLink]="['/shop']"
                       class="btn btn--box btn--border btn--large btn--uppercase btn--weight">Shopping Now</a>
                   </div>
                 </div>
               </div> <!-- End Hero Image -->
             </div>
+            <div class="hero-img hero-img--2 swiper-slide"
+              style="background-image: url(assets/img/hero/hero-home-2-img-1.jpg);">
+              <div class="hero__content">
+                <div class="row">
+                  <div class="col-9 offset-1">
+                    <div class="title title--normal title--thin">New Arrivals</div>
+                    <div class="title title--normal title--regular">Get Amazing PC Now</div>
+                    <div class="title title--description">Sale Offer <span>-20% Off</span> This Week</div>
+                    <a [routerLink]="['/shop']"
+                      class="btn btn--box btn--large btn--blue btn--uppercase btn--weight">Shopping Now</a>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- End Hero Image -->
             <!-- Start Hero Image -->
             <div class="hero-img hero-img--2 swiper-slide"
               style="background-image: url(assets/img/hero/hero-home-2-img-3.jpg);">
@@ -794,12 +808,27 @@
                     <div class="title title--normal title--white title--regular">GALAXY S9 / S9+</div>
                     <div class="title title--description title--white">Sale Offer <span class="title--white">-20%
                         Off</span> This Week</div>
-                    <a href="single-1.html"
+                    <a [routerLink]="['/shop']"
                       class="btn btn--box btn--large btn--blue btn--uppercase btn--weight">Shopping Now</a>
                   </div>
                 </div>
               </div>
             </div> <!-- End Hero Image -->
+            <div class="hero-img hero-img--2  swiper-slide"
+              style="background-image: url(assets/img/hero/hero-home-2-img-2.jpg);">
+              <div class="hero__content">
+                <div class="row">
+                  <div class="col-9 offset-1">
+                    <div class="title title--normal title--white title--thin">DJI Zenmuse X7</div>
+                    <div class="title title--normal title--white title--regular">Drone Expert Services</div>
+                    <div class="title title--description title--white">Sale Offer <span class="title--white">-20%
+                        Off</span> This Week</div>
+                    <a [routerLink]="['/shop']"
+                      class="btn btn--box btn--border btn--large btn--uppercase btn--weight">Shopping Now</a>
+                  </div>
+                </div>
+              </div> <!-- End Hero Image -->
+            </div>
 
             <!-- Add Pagination -->
             <div class="swiper-pagination hero__dots hero__dots--2"></div>
@@ -1609,9 +1638,10 @@
               </ul>
 
               <div class="modal__product-cart-buttons">
-                <a href="#" class="btn btn--box btn--large btn--blue btn--uppercase btn--weight"
+                <a [routerLink]="['/']" class="btn btn--box btn--large btn--blue btn--uppercase btn--weight"
                   data-dismiss="modal">Continue Shopping</a>
-                <a href="checkout.html" class="btn btn--box btn--large btn--blue btn--uppercase btn--weight">Process to
+                <a [routerLink]="['/checkout']"
+                  class="btn btn--box btn--large btn--blue btn--uppercase btn--weight">Process to
                   checkout</a>
               </div>
 

@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: PagesAdminComponent,
-    children: [{ path: 'dashboard', component: DashboardComponent }],
+    children: [{ path: '', component: DashboardComponent }],
   },
 ];
 

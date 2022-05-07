@@ -242,7 +242,7 @@
             </div>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <a class="nav-link" [routerLink]="['/admin/dashboard']">
               <i class="fa fa-home menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -599,9 +599,7 @@
       </nav>
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
-          <router-outlet></router-outlet>
-        </div>
+        <router-outlet></router-outlet>
         <!-- content-wrapper ends -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
