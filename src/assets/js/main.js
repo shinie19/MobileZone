@@ -211,9 +211,11 @@
   var heroSlider = new Swiper(".hero-slider", {
     slidesPerView: 1,
     effect: "fade",
-    speed: 1500,
+    loop: true,
+    speed: 1000,
     autoplay: {
-      delay: 6500,
+      delay: 3500,
+      disableOnInteraction: false,
     },
     pagination: {
       el: ".swiper-pagination",
