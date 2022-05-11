@@ -193,7 +193,7 @@
     min: 0,
     max: 1000,
     values: [0, 1000],
-    step: 100,
+    step: 10,
 
     slide: function (event, ui) {
       if (ui.values[0] == ui.values[1]) {
