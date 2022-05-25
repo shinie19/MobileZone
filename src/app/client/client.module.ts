@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ClientComponent } from './client.component';
 import { LoginComponent } from './login/login.component';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [ClientComponent, LoginComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+  ],
 })
 export class ClientModule {}

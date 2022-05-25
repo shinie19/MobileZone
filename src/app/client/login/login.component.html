@@ -826,12 +826,13 @@
                     <div id="lg1" class="tab-pane active">
                       <div class="login-form-container">
                         <div class="login-register-form">
-                          <form action="#" method="post">
-                            <div class="form-box__single-group">
-                              <input type="text" id="form-username" placeholder="Username">
+                          <form [formGroup]="loginForm" (ngSubmit)="login()">
+                            <div class=" form-box__single-group">
+                              <input formControlName="email" type="text" id="form-username" placeholder="Email">
                             </div>
                             <div class="form-box__single-group">
-                              <input type="password" id="form-username-password" placeholder="Enter password">
+                              <input formControlName="password" type="password" id="form-username-password"
+                                placeholder="Enter password">
                             </div>
                             <div class="d-flex justify-content-between flex-wrap m-tb-20">
                               <label for="account-remember">
