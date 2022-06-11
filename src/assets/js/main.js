@@ -191,9 +191,9 @@
     range: true,
     orientation: "horizontal",
     min: 0,
-    max: 1000,
-    values: [0, 1000],
-    step: 10,
+    max: 50000000,
+    values: [0, 50000000],
+    step: 100000,
 
     slide: function (event, ui) {
       if (ui.values[0] == ui.values[1]) {

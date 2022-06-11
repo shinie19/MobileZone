@@ -13,6 +13,9 @@ export class ProductService {
   getAll(): Observable<any> {
     return this.http.get(`${this.BASE_URL}`);
   }
+  getById(id: string): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/${id}`);
+  }
   getByBrandId(id: string): Observable<any> {
     return this.http.get(`${this.BASE_URL}/brand/${id}`);
   }

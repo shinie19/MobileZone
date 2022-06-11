@@ -17,7 +17,8 @@
               <li class="sidebar__menu-collapse-list" *ngFor="let b of brands">
                 <div class="accordion">
                   <a [routerLink]="['/shop']" [queryParams]="{brand: b.id}" class="accordion__title"
-                    data-toggle="collapse" data-target="#men-fashion">{{b.brandName}}</a>
+                    [ngClass]="{'active': b.id == brandId}" data-toggle="collapse"
+                    data-target="#men-fashion">{{b.brandName}}</a>
                 </div>
               </li> <!-- End Single Menu Collapse List -->
             </ul>
@@ -25,68 +26,97 @@
 
           <!-- Start Single Sidebar Widget -->
           <div class="sidebar__widget gray-bg">
-            <div class="sidebar__box">
-              <h5 class="sidebar__title">Filter By</h5>
-              <a href="/shop" class="btn btn--box btn--blue btn--small"><i class="far fa-times"></i> Clear All</a>
-            </div>
-            <div class="sidebar__box m-t-40">
-              <h5 class="sidebar__title">Memory</h5>
-            </div>
-            <ul class="sidebar__menu-filter ">
-              <!-- Start Single Menu Filter List -->
-              <li class="sidebar__menu-filter-list">
-                <label for="32gb"><input type="checkbox" name="memory" value="32gb" id="32gb"><span>32 GB</span></label>
-              </li> <!-- End Single Menu Filter List -->
-              <!-- Start Single Menu Filter List -->
-              <li class="sidebar__menu-filter-list">
-                <label for="64gb"><input type="checkbox" name="memory" value="64gb" id="64gb"><span>64 GB</span></label>
-              </li> <!-- End Single Menu Filter List -->
-              <li class="sidebar__menu-filter-list">
-                <label for="128gb"><input type="checkbox" name="memory" value="128gb" id="128gb"><span>128
-                    GB</span></label>
-              </li> <!-- End Single Menu Filter List -->
-              <li class="sidebar__menu-filter-list">
-                <label for="256gb"><input type="checkbox" name="memory" value="256gb" id="256gb"><span>256
-                    GB</span></label>
-              </li> <!-- End Single Menu Filter List -->
-              <li class="sidebar__menu-filter-list">
-                <label for="512GB"><input type="checkbox" name="memory" value="512GB" id="512GB"><span>512
-                    GB</span></label>
-              </li> <!-- End Single Menu Filter List -->
-            </ul>
-
-            <div class="sidebar__box m-t-40">
-              <h5 class="sidebar__title">Color</h5>
-            </div>
-            <ul class="sidebar__menu-filter ">
-              <!-- Start Single Menu Filter List -->
-              <li class="sidebar__menu-filter-list">
-                <label for="white"><input type="checkbox" name="color" value="white"
-                    id="white"><span>White</span></label>
-              </li> <!-- End Single Menu Filter List -->
-              <li class="sidebar__menu-filter-list">
-                <label for="silver"><input type="checkbox" name="color" value="silver"
-                    id="silver"><span>Silver</span></label>
-              </li> <!-- End Single Menu Filter List -->
-            </ul>
+            <form [formGroup]="filterForm">
+              <div class="sidebar__box">
+                <h5 class="sidebar__title">Filter By</h5>
+                <a href="/shop" class="btn btn--box btn--blue btn--small"><i class="far fa-times"></i> Clear All</a>
+              </div>
+              <div class="sidebar__box m-t-40">
+                <h5 class="sidebar__title">Memory</h5>
+              </div>
+              <ul class="sidebar__menu-filter ">
+                <!-- Start Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="32gb"><input type="radio" name="memory" value="32GB" id="32gb"
+                      formControlName="memory"><span [ngClass]="{'active': memory == '32GB'}">32 GB</span></label>
+                </li> <!-- End Single Menu Filter List -->
+                <!-- Start Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="64gb"><input type="radio" name="memory" value="64GB" id="64gb"
+                      formControlName="memory"><span [ngClass]="{'active': memory == '64GB'}">64 GB</span></label>
+                </li> <!-- End Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="128gb"><input type="radio" name="memory" value="128GB" id="128gb"
+                      formControlName="memory"><span [ngClass]="{'active': memory == '128GB'}">128
+                      GB</span></label>
+                </li> <!-- End Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="256gb"><input type="radio" name="memory" value="256GB" id="256gb"
+                      formControlName="memory"><span [ngClass]="{'active': memory == '256GB'}">256
+                      GB</span></label>
+                </li> <!-- End Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="512GB"><input type="radio" name="memory" value="512GB" id="512GB"
+                      formControlName="memory"><span [ngClass]="{'active': memory == '512GB'}">512
+                      GB</span></label>
+                </li> <!-- End Single Menu Filter List -->
+              </ul>
+              <div class="sidebar__box m-t-40">
+                <h5 class="sidebar__title">Color</h5>
+              </div>
+              <ul class="sidebar__menu-filter ">
+                <!-- Start Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="black"><input type="radio" name="color" value="1" id="black" formControlName="color"><span
+                      [ngClass]="{'active': color == '1'}">Black</span></label>
+                </li> <!-- End Single Menu Filter List -->
+                <!-- Start Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="silver"><input type="radio" name="color" value="2" id="silver"
+                      formControlName="color"><span [ngClass]="{'active': color == '2'}">Silver</span></label>
+                </li> <!-- End Single Menu Filter List -->
+                <!-- Start Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="gold"><input type="radio" name="color" value="3" id="gold" formControlName="color">
+                    <span [ngClass]="{'active': color == '3'}">Gold</span>
+                  </label>
+                </li> <!-- End Single Menu Filter List -->
+                <!-- Start Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="pink"><input type="radio" name="color" value="4" id="pink" formControlName="color"><span
+                      [ngClass]="{'active': color == '4'}">Pink</span></label>
+                </li> <!-- End Single Menu Filter List -->
+                <!-- Start Single Menu Filter List -->
+                <li class="sidebar__menu-filter-list">
+                  <label for="blue"><input type="radio" name="color" value="6" id="blue" formControlName="color"><span
+                      [ngClass]="{'active': color == '6'}">Blue</span></label>
+                </li> <!-- End Single Menu Filter List -->
+              </ul>
+              <span (click)="filterMemory()" class="btn btn--box btn--blue btn--small" style="margin-top: 24px;"><i
+                  class="far fa-filter"></i>
+                Filter</span>
+            </form>
           </div> <!-- End Single Sidebar Widget -->
 
           <!-- Start Single Sidebar Widget -->
           <div class="sidebar__widget gray-bg ">
-            <div class="sidebar__box">
-              <h5 class="sidebar__title">Price</h5>
-            </div>
-            <div class="sidebar__price-filter ">
-              <div id="slider-range" class="price-filter-range"></div>
-              <div class="slider__price-filter-input d-flex justify-content-between">
-                <input type="number" min=0 max="9900" oninput="validity.valid||(value='0');" id="min_price"
-                  class="price-range-field" />
-                <input type="number" min=0 max="10000" oninput="validity.valid||(value='1000');" id="max_price"
-                  class="price-range-field" />
+            <form [formGroup]="filterPriceForm">
+              <div class="sidebar__box">
+                <h5 class="sidebar__title">Price</h5>
               </div>
-            </div>
-            <a href="" class="btn btn--box btn--blue btn--small" style="margin-top: 24px;"><i class="far fa-filter"></i>
-              Filter</a>
+              <div class="sidebar__price-filter ">
+                <div id="slider-range" class="price-filter-range"></div>
+                <div class="slider__price-filter-input d-flex justify-content-between">
+                  <input type="number" id="min_price" class="price-range-field" formControlName="minPrice" />
+                  <input type="number" id="max_price" class="price-range-field" formControlName="maxPrice" />
+                </div>
+              </div>
+              <!-- <h2>{{minPriceFilter}}</h2>
+              <h2>{{maxPriceFilter}}</h2> -->
+              <span (click)="filterPrice()" class="btn btn--box btn--blue btn--small" style="margin-top: 24px;"><i
+                  class="far fa-filter"></i>
+                Filter</span>
+            </form>
           </div> <!-- End Single Sidebar Widget -->
 
           <!-- ::::::  Start banner Section  ::::::  -->
@@ -141,12 +171,10 @@
             <span>Sort By:</span>
             <div class="sort-box__option">
               <!-- <label class="select-sort__arrow"> -->
-              <select name="select-sort" class="">
-                <option value="1">Relevance</option>
-                <option value="2">Name, A to Z</option>
-                <option value="3"> Name, Z to A </option>
-                <option value="4"> Price, low to high</option>
-                <option value="5">Price, high to low</option>
+              <select #sortOption (change)="selectOptionSort(sortOption.value)">
+                <option *ngFor="let item of sortItems" [value]="item.id" [selected]="item.id == sort">
+                  {{item.name}}
+                </option>
               </select>
               <!-- </label> -->
             </div>
@@ -160,7 +188,7 @@
               <div *ngFor="let p of products"
                 class="product__box product__box--default product__box--border-hover text-center float-left float-3">
                 <div class="product__img-box">
-                  <a [routerLink]="['product']" [queryParams]="{id: p.productId}" class="product__img--link">
+                  <a [routerLink]="['/product']" [queryParams]="{id: p.productId}" class="product__img--link">
                     <img class="product__img" [src]="p.images[0]" alt="">
                   </a>
 

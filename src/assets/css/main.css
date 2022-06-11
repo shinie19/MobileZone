@@ -36,7 +36,7 @@ Template URL: https://hasthemes.com/
 23 - Page - Blog
 24 - Page - Cart
 25 - Page - Checkout
-26 - Page - 404 
+26 - Page - 404
 27 - Page - My Account
 28 - Page - Login
 29 - Page - Contact
@@ -61,7 +61,9 @@ Template URL: https://hasthemes.com/
   list-style: none;
   word-wrap: break-word;
 }
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -70,7 +72,9 @@ body {
   font-size: 16px;
 }
 
-dl, ol, ul {
+dl,
+ol,
+ul {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -236,13 +240,13 @@ dl, ol, ul {
 }
 @media (min-width: 768px) {
   .gray-bg.p-tb-100,
-.swiper-outside-arrow-hover.p-tb-100 {
+  .swiper-outside-arrow-hover.p-tb-100 {
     padding: 80px 0;
   }
 }
 @media (min-width: 992px) {
   .gray-bg.p-tb-100,
-.swiper-outside-arrow-hover.p-tb-100 {
+  .swiper-outside-arrow-hover.p-tb-100 {
     padding: 100px 0;
   }
 }
@@ -642,7 +646,9 @@ button.btn--block {
   }
 }
 
-.slider-arrow-btn-style, .inner__nav, .default__nav {
+.slider-arrow-btn-style,
+.inner__nav,
+.default__nav {
   font-size: 16px;
   width: 30px;
   height: 30px;
@@ -651,7 +657,7 @@ button.btn--block {
   z-index: 999;
   transition: all 0.3s ease;
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .default__nav {
@@ -1242,10 +1248,14 @@ button.btn--block {
 .product__review--blank {
   color: #333;
 }
-.product-tablist .nav-link, .product__extra-nav .nav-link {
+.product-tablist .nav-link,
+.product__extra-nav .nav-link {
   color: #242424;
 }
-.product-tablist .nav-link.active, .product-tablist .nav-link:hover, .product__extra-nav .nav-link.active, .product__extra-nav .nav-link:hover {
+.product-tablist .nav-link.active,
+.product-tablist .nav-link:hover,
+.product__extra-nav .nav-link.active,
+.product__extra-nav .nav-link:hover {
   color: #0063d1;
 }
 .product-tablist--style-title li {
@@ -1281,7 +1291,8 @@ button.btn--block {
   text-transform: capitalize;
   color: #777;
 }
-.product-tablist--style-title .nav-link.active, .product-tablist--style-title .nav-link:hover {
+.product-tablist--style-title .nav-link.active,
+.product-tablist--style-title .nav-link:hover {
   color: #000;
 }
 
@@ -1417,14 +1428,17 @@ button.btn--block {
     margin-top: 0px;
   }
 }
-.modal__product-title, .modal__product-price {
+.modal__product-title,
+.modal__product-price {
   display: block;
   font-weight: 500;
 }
-.modal__product-info, .modal__product-shipping-info {
+.modal__product-info,
+.modal__product-shipping-info {
   font-weight: 500;
 }
-.modal__product-info span, .modal__product-shipping-info span {
+.modal__product-info span,
+.modal__product-shipping-info span {
   font-weight: 300;
   padding-left: 5px;
 }
@@ -1520,11 +1534,13 @@ button.btn--block {
     align-items: center;
   }
 }
-.sort-box__left, .sort-box__right {
+.sort-box__left,
+.sort-box__right {
   display: flex;
   align-items: center;
 }
-.sort-box__left span, .sort-box__right span {
+.sort-box__left span,
+.sort-box__right span {
   display: inline-block;
 }
 .sort-box__left {
@@ -1563,8 +1579,8 @@ button.btn--block {
   padding: 5px 100px 5px 15px;
   border-radius: 3px;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .select-sort option {
   text-align: right;
@@ -1740,6 +1756,9 @@ button.btn--block {
 .accordion a:hover {
   color: #0063d1;
 }
+.accordion a.active {
+  color: #0063d1;
+}
 
 /*****************************
 17 - Component - Gallery
@@ -1878,13 +1897,15 @@ button.btn--block {
 .tablist--style-black .nav-link {
   color: #545454;
 }
-.tablist--style-black .nav-link.active, .tablist--style-black .nav-link:hover {
+.tablist--style-black .nav-link.active,
+.tablist--style-black .nav-link:hover {
   color: #000;
 }
 .tablist--style-blue .nav-link {
   color: #545454;
 }
-.tablist--style-blue .nav-link.active, .tablist--style-blue .nav-link:hover {
+.tablist--style-blue .nav-link.active,
+.tablist--style-blue .nav-link:hover {
   color: #0063d1;
 }
 .tablist--style-title li > .nav-link {
@@ -2026,7 +2047,9 @@ button.btn--block {
   font-weight: 400;
   text-align: left;
 }
-.form-box__single-group input, .form-box__single-group textarea, .form-box__single-group select {
+.form-box__single-group input,
+.form-box__single-group textarea,
+.form-box__single-group select {
   border: 1px solid #dee2e6;
   border-radius: 3px;
   padding: 7.5px 10px;
@@ -2044,15 +2067,24 @@ select {
 label > span {
   display: inline-block;
   padding-left: 30px;
+  cursor: pointer;
 }
 
-input[type=checkbox] {
+label > span:hover {
+  color: #0063d1;
+}
+
+label > span.active {
+  color: #0063d1;
+}
+
+input[type="checkbox"] {
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   position: relative;
 }
-input[type=checkbox]::after {
+input[type="checkbox"]::after {
   position: absolute;
   content: "";
   width: 20px;
@@ -2066,20 +2098,20 @@ input[type=checkbox]::after {
   border-radius: 2px;
 }
 
-input[type=checkbox]:checked::after {
+input[type="checkbox"]:checked::after {
   content: "";
   font-family: "Font Awesome 5 Light";
   color: #fff;
   background: #0063d1;
 }
 
-input[type=radio] {
+input[type="radio"] {
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   position: relative;
 }
-input[type=radio]::after {
+input[type="radio"]::after {
   position: absolute;
   content: "";
   font-family: "Font Awesome 5 Free";
@@ -2093,8 +2125,8 @@ input[type=radio]::after {
 .product-color-select {
   position: relative;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .product-color-select::after {
   position: absolute;
@@ -2104,13 +2136,13 @@ input[type=radio]::after {
   border-radius: 50% !important;
   border: 1px solid transparent !important;
 }
-.product-color-select[value=color-red]::after {
+.product-color-select[value="color-red"]::after {
   background: #ed3c32 !important;
 }
-.product-color-select[value=color-green]::after {
+.product-color-select[value="color-green"]::after {
   background: #62ab00 !important;
 }
-.product-color-select[value=color-blue]::after {
+.product-color-select[value="color-blue"]::after {
   background: #0063d1 !important;
 }
 .product-color-select:checked::after {
@@ -2118,11 +2150,11 @@ input[type=radio]::after {
   border: 2px solid #000 !important;
 }
 
-input[type=radio]:checked::after {
+input[type="radio"]:checked::after {
   content: "";
 }
 
-input[type=radio].shipping-select::after {
+input[type="radio"].shipping-select::after {
   position: absolute;
   content: "";
   font-family: "Font Awesome 5 Free";
@@ -2133,7 +2165,7 @@ input[type=radio].shipping-select::after {
   color: #0063d1;
 }
 
-input[type=radio].shipping-select:checked::after {
+input[type="radio"].shipping-select:checked::after {
   content: "";
 }
 
@@ -2634,7 +2666,9 @@ input[type=radio].shipping-select:checked::after {
   min-width: 130px;
 }
 
-.single-form select, .single-form textarea, .single-form input {
+.single-form select,
+.single-form textarea,
+.single-form input {
   width: 100%;
   font-size: 14px;
   height: 40px;
@@ -2708,13 +2742,13 @@ input[type=radio].shipping-select:checked::after {
 }
 @media (min-width: 576px) {
   .contact-info-wrap,
-.contact-form {
+  .contact-form {
     padding: 25px 30px;
   }
 }
 @media (min-width: 768px) {
   .contact-info-wrap,
-.contact-form {
+  .contact-form {
     padding: 30px 40px;
   }
 }
@@ -2735,7 +2769,8 @@ input[type=radio].shipping-select:checked::after {
   border-radius: 50%;
 }
 
-.contact-info-dec a, .contact-info-dec span {
+.contact-info-dec a,
+.contact-info-dec span {
   display: block;
   color: #333;
   text-decoration: none !important;
@@ -2801,7 +2836,7 @@ input[type=radio].shipping-select:checked::after {
   display: flex;
   font-size: 13px;
 }
-.header__search-input input[type=search] {
+.header__search-input input[type="search"] {
   width: 100%;
   height: 44px;
   padding: 10px 10px 10px 184px;
@@ -2813,11 +2848,11 @@ input[type=radio].shipping-select:checked::after {
   border-bottom-right-radius: 0px;
   border-right: none;
 }
-.header__search-input--mobile input[type=search] {
+.header__search-input--mobile input[type="search"] {
   padding: 10px 10px 10px 140px;
 }
 @media (min-width: 576px) {
-  .header__search-input--mobile input[type=search] {
+  .header__search-input--mobile input[type="search"] {
     padding: 10px 10px 10px 184px;
   }
 }
@@ -3014,7 +3049,8 @@ input[type=radio].shipping-select:checked::after {
   font-weight: 500;
 }
 
-.dropdown__menu, .dropdown__submenu {
+.dropdown__menu,
+.dropdown__submenu {
   top: 100%;
   left: 0;
   width: 230px;
@@ -3040,19 +3076,22 @@ input[type=radio].shipping-select:checked::after {
     left: 100%;
   }
 }
-.dropdown__list, .dropdown__submenu-list {
+.dropdown__list,
+.dropdown__submenu-list {
   padding: 5px 15px;
   display: block;
   position: relative;
 }
-.dropdown__link, .dropdown__submenu-link {
+.dropdown__link,
+.dropdown__submenu-link {
   text-decoration: none !important;
   display: inline-block;
   width: 100%;
   color: #252525;
   transition: all 0.3s ease;
 }
-.dropdown__link:hover, .dropdown__submenu-link:hover {
+.dropdown__link:hover,
+.dropdown__submenu-link:hover {
   color: #0063d1;
 }
 
@@ -3254,13 +3293,16 @@ input[type=radio].shipping-select:checked::after {
   right: 0;
   transition: all 0.3s ease;
 }
-.offcanvas-menu .active > .offcanvas__menu-expand, .sub-menu > .active .offcanvas__menu-expand {
+.offcanvas-menu .active > .offcanvas__menu-expand,
+.sub-menu > .active .offcanvas__menu-expand {
   border-bottom: 1px solid #ddd;
 }
-.offcanvas-menu .active > .offcanvas__menu-expand:last-child, .sub-menu > .active .offcanvas__menu-expand:last-child {
+.offcanvas-menu .active > .offcanvas__menu-expand:last-child,
+.sub-menu > .active .offcanvas__menu-expand:last-child {
   border-bottom: none;
 }
-.offcanvas-menu .active > .offcanvas__menu-expand::after, .sub-menu > .active .offcanvas__menu-expand::after {
+.offcanvas-menu .active > .offcanvas__menu-expand::after,
+.sub-menu > .active .offcanvas__menu-expand::after {
   content: "";
   font-family: "plaza-icon";
 }

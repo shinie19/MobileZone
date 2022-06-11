@@ -14,6 +14,7 @@ import { CartComponent } from './cart/cart.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
       { path: 'wishlist', component: WishlistComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'shop', component: ShopComponent },
-
+      { path: 'product', component: ProductDetailComponent },
       { path: 'blogs', component: BlogsComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'cart', component: CartComponent },
@@ -51,6 +52,11 @@ const routes: Routes = [
     BlogDetailComponent,
     ProductDetailComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PagesModule {}

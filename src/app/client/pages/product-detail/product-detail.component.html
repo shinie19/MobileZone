@@ -5,7 +5,7 @@
       <div class="col-12">
         <ul class="page-breadcrumb__menu">
           <li class="page-breadcrumb__nav"><a href="#">Home</a></li>
-          <li class="page-breadcrumb__nav active">Single Product Variable Page</li>
+          <li class="page-breadcrumb__nav active">Product Detail</li>
         </ul>
       </div>
     </div>
@@ -81,7 +81,7 @@
             </div>
             <div class="col-md-6">
               <div class="product-details-box">
-                <h5 class="section-content__title">Canon Vista Fhd 4k Camcorder 2214c002</h5>
+                <h5 class="section-content__title" style="font-size: 24px">{{product.productName}}</h5>
                 <span class="text-reference">Reference: Jhon Doe</span>
                 <div class="review-box">
                   <ul class="product__review m-t-10 m-b-15">
@@ -96,9 +96,15 @@
                   <a href="#modalReview" data-toggle="modal" class="link--gray link--icon-left m-b-5"><i
                       class="fal fa-edit"></i> Write a review</a>
                 </div>
-                <div class="product__price">
-                  <span class="product__price-del">$35.90</span>
-                  <span class="product__price-reg">$31.69</span>
+                <div class="product__price" style="font-size: 30px">
+                  <span class="product__price-del" style="font-size: 18px">{{(product.priceOut).toLocaleString('vi-VN',
+                    {style :
+                    'currency',
+                    currency : 'VND'})}}</span>
+                  <br>
+                  <span class="product__price-reg" style="font-size: 28px">{{(product.priceOut * (100 -
+                    product.discount)/100).toLocaleString('vi-VN', {style : 'currency', currency :
+                    'VND'})}}</span>
                 </div>
                 <div class="product__desc m-t-25 m-b-30">
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, commodi expedita, non ducimus
@@ -109,7 +115,7 @@
                 </div>
                 <div class="product-var p-t-30">
                   <div class="product-size product-var__item">
-                    <span class="product-var__text">Size</span>
+                    <span class="product-var__text">Color</span>
                     <select id="product-size-real">
                       <option value="small">S</option>
                       <option value="medium">M</option>
@@ -117,17 +123,6 @@
                       <option value="extraLarge">XL</option>
                       <option value="doubleLarge">XXL</option>
                     </select>
-                  </div>
-                  <div class="product-color product-var__item">
-                    <span class="product-var__text">Color</span>
-                    <div class="color-filter ">
-                      <label class="product-color"><input name="product-color-select" type="radio"
-                          class="product-color-select" value="color-red"><span></span></label>
-                      <label class="product-color"><input name="product-color-select" type="radio"
-                          class="product-color-select" value="color-green" checked><span></span></label>
-                      <label class="product-color"><input name="product-color-select" type="radio"
-                          class="product-color-select" value="color-blue"><span></span></label>
-                    </div>
                   </div>
                   <div class="product-quantity product-var__item">
                     <span class="product-var__text">Quantity</span>
