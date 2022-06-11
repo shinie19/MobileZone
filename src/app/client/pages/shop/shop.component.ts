@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
+import { BrandService } from '../../../services/brand.service';
 
 @Component({
   selector: 'app-shop',
@@ -9,14 +10,20 @@ import { ProductService } from '../../../services/product.service';
 })
 export class ShopComponent implements OnInit {
   brandId: string = '';
+  brands: any[] = [];
   products: any = [];
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
-  ) {}
+    private brandService: BrandService,
+    private productService: ProductService,
+    private router: Router
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit(): void {
+    this.getAllBrands();
     this.brandId = this.route.snapshot.queryParamMap.get('brand') || '';
     // console.log('brand-id: ', this.brandId);
     this.loadProducts(this.brandId);
@@ -60,5 +67,19 @@ export class ShopComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+  }
+
+  getAllBrands(): void {
+    this.brandService.getAll().subscribe(
+      (res) => {
+        this.brands = res;
+        console.log(this.brands);
+      },
+      (err) => console.log(err)
+    );
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }

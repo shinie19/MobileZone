@@ -91,7 +91,7 @@
           -->
 
             <li class="menu-item" *ngFor="let brand of brands"><a [routerLink]="['shop']"
-                [queryParams]="{brand: brand.id}">{{brand['brandName']}}</a></li>
+                [queryParams]="{brand: brand.id}">{{brand.brandName}}</a></li>
 
             <!-- <li class="menu-item" style="display: none;"><a href="#"> Smart Home Appliances</a></li> -->
           </ul>
