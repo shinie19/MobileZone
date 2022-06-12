@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
         (res) => {
           // console.log(res);
           sessionStorage.setItem('token', res.authenticationToken);
+          sessionStorage.setItem('email', res.email);
           sessionStorage.setItem('isAdmin', res.isAdmin);
           if (res.isAdmin) {
             this.router.navigate(['/admin']);

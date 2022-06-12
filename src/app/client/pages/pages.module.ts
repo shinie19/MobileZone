@@ -15,6 +15,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 const routes: Routes = [
   {
@@ -38,6 +40,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    HeaderComponent,
+    FooterComponent,
     PagesComponent,
     HomeComponent,
     AboutComponent,

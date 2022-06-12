@@ -12,6 +12,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ShopComponent implements OnInit {
   brandId: string = '';
+  prodName: string = '';
   memory: string = '';
   color: string = '';
   minPrice: number = 0;
@@ -55,6 +56,7 @@ export class ShopComponent implements OnInit {
     this.getAllBrands();
     this.getAllColor();
     this.brandId = this.route.snapshot.queryParamMap.get('brand') || '';
+    this.prodName = this.route.snapshot.queryParamMap.get('name') || '';
     this.memory = this.route.snapshot.queryParamMap.get('memory') || '';
     this.color = this.route.snapshot.queryParamMap.get('color') || '';
     this.minPrice = parseInt(
@@ -68,6 +70,7 @@ export class ShopComponent implements OnInit {
     // console.log('brand-id: ', this.brandId);
     this.loadProducts(
       this.brandId,
+      this.prodName,
       this.memory,
       this.color,
       this.minPrice,
@@ -78,6 +81,7 @@ export class ShopComponent implements OnInit {
 
   loadProducts(
     brandId: string,
+    prodName: string,
     memory: string,
     color: string,
     minPrice: number,
@@ -95,6 +99,13 @@ export class ShopComponent implements OnInit {
             },
             (err) => console.log(err)
           );
+        }
+
+        if (prodName !== '') {
+          this.products = this.products.filter((p) =>
+            p.productName.toLowerCase().includes(prodName.toLowerCase())
+          );
+          console.log('run', prodName);
         }
 
         if (memory !== '') {
