@@ -13,4 +13,7 @@ export class ColorService {
   getAll(): Observable<any> {
     return this.http.get(`${this.BASE_URL}`);
   }
+  getById(id: string): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/${id}`);
+  }
 }
