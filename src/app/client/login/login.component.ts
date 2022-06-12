@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LazyLoadScriptService } from '../../services/lazy-load-script.service';
+import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from '../../services/auth.service';
+import { LazyLoadScriptService } from '../../services/lazy-load-script.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private lazyLoadService: LazyLoadScriptService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -42,11 +44,27 @@ export class LoginComponent implements OnInit {
           if (res.isAdmin) {
             this.router.navigate(['/admin']);
           } else this.router.navigate(['/']);
+          // Toast
+          this.toast.success({
+            detail: 'Success',
+            summary: '🎉 You have successfully logged in',
+            sticky: true,
+            position: 'tr',
+            duration: 3000,
+          });
         },
         (err) => {
           // console.log('Error');
           this.loginForm.controls['password'].setValue('');
-          alert('Email or password incorrect, please try again!');
+          // alert('Email or password incorrect, please try again!');
+          // Toast
+          this.toast.error({
+            detail: 'Failed',
+            summary: '⛔ Email or password incorrect!',
+            sticky: true,
+            position: 'tr',
+            duration: 3000,
+          });
         }
       );
   }

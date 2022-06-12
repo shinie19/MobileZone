@@ -353,7 +353,7 @@
                           p.discount)/100).toLocaleString('vi-VN', {style : 'currency', currency :
                           'VND'})}}</span>
                       </div>
-                      <a href="single-1.html"
+                      <a [routerLink]="['/product']" [queryParams]="{id: p.productId}"
                         class="product__link product__link--underline product__link--weight-light m-t-15">
                         {{p.productName}}
                       </a>

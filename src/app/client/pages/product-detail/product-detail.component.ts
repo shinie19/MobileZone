@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { ColorService } from '../../../services/color.service';
 
@@ -17,10 +17,13 @@ export class ProductDetailComponent implements OnInit {
   quantitySelected: number = 1;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
     private colorService: ColorService
-  ) {}
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit(): void {
     this.productId = this.route.snapshot.queryParamMap.get('id') || '';
