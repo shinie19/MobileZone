@@ -44,6 +44,35 @@ export class HomeComponent implements OnInit {
   // shipFee: number = 50000;
   // tax: number = 0;
 
+  ngOnInit(): void {
+    this.sliderService.getAll().subscribe(
+      (res) => {
+        this.sliders = res;
+        // console.log(this.sliders);
+      },
+      (err) => {
+        console.log;
+      }
+    );
+
+    this.brandService.getAll().subscribe(
+      (res) => {
+        this.brands = res;
+        // console.log(this.brands);
+      },
+      (err) => console.log(err)
+    );
+    this.getFlashSaleProducts();
+    this.getAllProducts();
+    this.getNewArrivalProduct();
+    this.getFeaturedProducts();
+    this.getBestSellerProducts();
+
+    // cart
+    this.cartService.loadCart();
+    this.items = this.cartService.getItems();
+  }
+
   //----- add item to cart
   addToCart(item: any): void {
     if (!this.cartService.itemInCart(item)) {
@@ -61,7 +90,6 @@ export class HomeComponent implements OnInit {
     this.toast.success({
       detail: 'Success',
       summary: '🎉 Product has been added to the cart',
-      sticky: true,
       position: 'tr',
       duration: 3000,
     });
@@ -99,7 +127,6 @@ export class HomeComponent implements OnInit {
     this.toast.success({
       detail: 'Success',
       summary: 'Product has been removed from cart',
-      sticky: true,
       position: 'tr',
       duration: 3000,
     });
@@ -110,35 +137,6 @@ export class HomeComponent implements OnInit {
     // this.items.forEach((item, index) => this.cartService.removeItem(index));
     this.cartService.clearCart(items);
     this.items = [...this.cartService.getItems()];
-  }
-
-  ngOnInit(): void {
-    this.sliderService.getAll().subscribe(
-      (res) => {
-        this.sliders = res;
-        // console.log(this.sliders);
-      },
-      (err) => {
-        console.log;
-      }
-    );
-
-    this.brandService.getAll().subscribe(
-      (res) => {
-        this.brands = res;
-        // console.log(this.brands);
-      },
-      (err) => console.log(err)
-    );
-    this.getFlashSaleProducts();
-    this.getAllProducts();
-    this.getNewArrivalProduct();
-    this.getFeaturedProducts();
-    this.getBestSellerProducts();
-
-    // cart
-    this.cartService.loadCart();
-    this.items = this.cartService.getItems();
   }
 
   getAllProducts(): void {

@@ -1,9 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { BrandService } from '../../../services/brand.service';
 import { ColorService } from '../../../services/color.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CartService } from '../../../services/cart.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-shop',
@@ -11,6 +19,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./shop.component.css'],
 })
 export class ShopComponent implements OnInit {
+  @ViewChildren('subTotalWrap') subTotalItems!: QueryList<ElementRef>;
+  @ViewChildren('subTotalWrap_existing')
+  subTotalItems_existing!: QueryList<ElementRef>;
+
   brandId: string = '';
   prodName: string = '';
   memory: string = '';
@@ -18,6 +30,9 @@ export class ShopComponent implements OnInit {
   minPrice: number = 0;
   maxPrice: number = 50000000;
   sort: number = 1;
+
+  //cart
+  items: any[] = [];
 
   brands: any[] = [];
   colors: any[] = [];
@@ -47,7 +62,9 @@ export class ShopComponent implements OnInit {
     private colorService: ColorService,
     private productService: ProductService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public cartService: CartService,
+    private toast: NgToastService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -77,7 +94,78 @@ export class ShopComponent implements OnInit {
       this.maxPrice,
       this.sort
     );
+    // cart
+    this.cartService.loadCart();
+    this.items = this.cartService.getItems();
   }
+
+  // cart
+  //----- add item to cart
+  addToCart(item: any): void {
+    if (!this.cartService.itemInCart(item)) {
+      item.qtyTotal = 1;
+      item.colorSelected = item.colorIds[0];
+      item.variationCost = (item.priceOut * (100 - item.discount)) / 100;
+      // item = {
+      //   ...item,
+      //   qtyTotal: 1,
+      // };
+      this.cartService.addToCart(item); //add items in cart
+      this.items = [...this.cartService.getItems()];
+    }
+    // Toast
+    this.toast.success({
+      detail: 'Success',
+      summary: '🎉 Product has been added to the cart',
+      position: 'tr',
+      duration: 3000,
+    });
+  }
+
+  changeSubtotal(item: any, index: number): void {
+    const qty = item.qtyTotal;
+    const amt = item.variationCost;
+    const subTotal = amt * qty;
+    const subTotal_converted = subTotal.toLocaleString('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+    });
+
+    this.subTotalItems.toArray()[index].nativeElement.innerHTML =
+      subTotal_converted;
+    this.cartService.saveCart();
+  }
+
+  get total() {
+    return this.items.reduce(
+      (sum, x) => ({
+        qtyTotal: 1,
+        variationCost: sum.variationCost + x.qtyTotal * x.variationCost,
+      }),
+      { qtyTotal: 1, variationCost: 0 }
+    ).variationCost;
+  }
+
+  //----- remove specific item
+  removeFromCart(item: any) {
+    this.cartService.removeItem(item);
+    this.items = this.cartService.getItems();
+    // Toast
+    this.toast.success({
+      detail: 'Success',
+      summary: 'Product has been removed from cart',
+      position: 'tr',
+      duration: 3000,
+    });
+  }
+
+  //----- clear cart item
+  clearCart(items: any) {
+    // this.items.forEach((item, index) => this.cartService.removeItem(index));
+    this.cartService.clearCart(items);
+    this.items = [...this.cartService.getItems()];
+  }
+  // end handle cart
 
   loadProducts(
     brandId: string,

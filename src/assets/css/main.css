@@ -5553,3 +5553,9 @@ table tbody > tr td a:hover {
 .border-top-1 {
   border-top: 1px solid #ddd;
 }
+
+span.formValidation {
+  font-size: 13px;
+  color: #e60909;
+  margin-top: 8px;
+}

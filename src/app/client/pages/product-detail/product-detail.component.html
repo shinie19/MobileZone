@@ -96,7 +96,7 @@
                       <div class="quantity">
                         <input [(ngModel)]="quantitySelected" type="number" min="1" max="9" step="1" value="1">
                       </div>
-                      <a href="#modalAddCart" data-toggle="modal" data-dismiss="modal"
+                      <a (click)="addToCart(product)" data-toggle="modal" data-dismiss="modal"
                         class="btn btn--box btn--small btn--blue btn--uppercase btn--weight m-l-20">Add to cart</a>
                     </div>
 
@@ -338,7 +338,7 @@
                           <img class="product__img" [src]="p.images[0]" alt="">
                         </a>
 
-                        <a href="#modalAddCart" data-toggle="modal"
+                        <a (click)="addToCart(p)" data-toggle="modal"
                           class="btn btn--box btn--small btn--gray btn--uppercase btn--weight btn--hover-zoom product__upper-btn">Add
                           to cart</a>
                         <span class="product__tag product__tag--discount">-{{p.discount}}%</span>
@@ -376,3 +376,74 @@
     </div>
   </div>
 </main> <!-- ::::::  End  Main Container Section  ::::::  -->
+
+<!-- material-scrolltop button -->
+<button class="material-scrolltop" type="button"></button>
+
+<!-- ::::::  Start Popup Add Cart ::::::  -->
+<div id="offcanvas-add-cart__box" class="offcanvas offcanvas-cart offcanvas-add-cart">
+  <div class="offcanvas-add-cart__top m-b-40">
+    <span class="offcanvas-add-cart__top-text"><i class="icon-shopping-cart"></i> Total Items: {{items.length}}</span>
+    <button class=" offcanvas-close">&times;</button>
+  </div>
+  <!-- Start Add Cart Item Box-->
+  <ul class="offcanvas-add-cart__menu">
+    <!-- Start Single Add Cart Item-->
+    <li *ngFor="let item of items; let i = index " class="offcanvas-add-cart__list pos-relative">
+      <div class="offcanvas-add-cart__img-box pos-relative">
+        <a [routerLink]="['/product']" [queryParams]="{id: item.productId}"
+          class="offcanvas-add-cart__img-link img-responsive"><img [src]="item.images[0]" alt=""
+            class="add-cart__img"></a>
+        <span class="offcanvas-add-cart__item-count pos-absolute">{{item.qtyTotal}}x</span>
+      </div>
+      <div class="offcanvas-add-cart__detail">
+        <a [routerLink]="['/product']" [queryParams]="{id: item.productId}"
+          class="offcanvas-add-cart__link">{{item.productName}}</a>
+        <span #subTotalWrap class="offcanvas-add-cart__price">{{(item.priceOut * (100 -
+          item.discount)/100).toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}}</span>
+        <!-- <span class="offcanvas-add-cart__info">Color: {{item.colorName}}</span> -->
+        <div>
+          <input [(ngModel)]="item.qtyTotal" [ngModelOptions]="{standalone: true}" min="1" type="number"
+            value="{{ item.qtyTotal }}" name="" class="form-control" (change)="changeSubtotal(item ,i)" />
+        </div>
+
+      </div>
+      <button (click)="removeFromCart(item)" class="offcanvas-add-cart__item-dismiss pos-absolute">&times;</button>
+    </li> <!-- Start Single Add Cart Item-->
+  </ul> <!-- Start Add Cart Item Box-->
+  <!-- Start Add Cart Checkout Box-->
+  <div class="offcanvas-add-cart__checkout-box-bottom">
+    <!-- Start offcanvas Add Cart Checkout Info-->
+    <ul class="offcanvas-add-cart__checkout-info">
+      <!-- <li class="offcanvas-add-cart__checkout-list">
+        <span class="offcanvas-add-cart__checkout-left-info">Subtotal</span>
+        <span class="offcanvas-add-cart__checkout-right-info">{{total.toLocaleString('vi-VN', {style : 'currency',
+          currency : 'VND'})}}</span>
+      </li>
+      <li class="offcanvas-add-cart__checkout-list">
+        <span class="offcanvas-add-cart__checkout-left-info">Shipping</span>
+        <span class="offcanvas-add-cart__checkout-right-info">{{shipFee.toLocaleString('vi-VN', {style : 'currency',
+          currency : 'VND'})}}</span>
+      </li>
+
+      <li class="offcanvas-add-cart__checkout-list">
+        <span class="offcanvas-add-cart__checkout-left-info">Taxes</span>
+        <span class="offcanvas-add-cart__checkout-right-info">{{tax.toLocaleString('vi-VN', {style : 'currency',
+          currency : 'VND'})}}</span>
+      </li>  -->
+      <!-- Start Single Add Cart Checkout Info-->
+      <li class="offcanvas-add-cart__checkout-list">
+        <span class="offcanvas-add-cart__checkout-left-info">Total</span>
+        <span class="offcanvas-add-cart__checkout-right-info">{{total.toLocaleString('vi-VN', {style :
+          'currency', currency : 'VND'})}}</span>
+      </li> <!-- End Single Add Cart Checkout Info-->
+    </ul> <!-- End offcanvas Add Cart Checkout Info-->
+
+    <div class="offcanvas-add-cart__btn-checkout">
+      <a [routerLink]="['/checkout']"
+        class="btn btn--block btn--box btn--gray btn--large btn--uppercase btn--weight">Checkout</a>
+    </div>
+  </div> <!-- End Add Cart Checkout Box-->
+</div> <!-- :::::: End Popup Add Cart :::::: -->
+
+<div class="offcanvas-overlay"></div>

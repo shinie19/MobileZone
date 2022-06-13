@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
         (res) => {
           // console.log(res);
           sessionStorage.setItem('token', res.authenticationToken);
+          sessionStorage.setItem('userId', res.userId);
           sessionStorage.setItem('email', res.email);
           sessionStorage.setItem('isAdmin', res.isAdmin);
           if (res.isAdmin) {
@@ -49,7 +50,6 @@ export class LoginComponent implements OnInit {
           this.toast.success({
             detail: 'Success',
             summary: '🎉 You have successfully logged in',
-            sticky: true,
             position: 'tr',
             duration: 3000,
           });
@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
           this.toast.error({
             detail: 'Failed',
             summary: '⛔ Email or password incorrect!',
-            sticky: true,
             position: 'tr',
             duration: 3000,
           });

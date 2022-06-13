@@ -21,96 +21,63 @@
         <div class="section-content">
           <h5 class="section-content__title">Billing Details</h5>
         </div>
-        <form action="#" method="post" class="form-box">
+        <form id="myForm" class="form-box" [formGroup]="checkoutForm" (ngSubmit)="placeOrder()">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="form-box__single-group">
-                <label for="form-first-name">First Name</label>
-                <input type="text" id="form-first-name">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-box__single-group">
-                <label for="form-last-name">Last Name</label>
-                <input type="text" id="form-last-name">
+                <label for="form-last-name">* Full Name</label>
+                <input formControlName="fullName" type="text" id="form-last-name">
+                <span *ngIf="(checkoutForm.get('fullName')?.invalid || checkoutForm.get('fullName')?.errors?.['required'])
+                  && (checkoutForm.get('fullName')?.dirty || checkoutForm.get('fullName')?.touched)"
+                  class="formValidation">
+                  Please enter your full name!</span>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-box__single-group">
-                <label for="form-company-name">Company Name</label>
-                <input type="text" id="form-company-name">
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-box__single-group">
-                <label for="form-country">* Country</label>
-                <select id="form-country">
-                  <option value="select-country" selected>Select a country</option>
-                  <option value="BD">Bangladesh</option>
-                  <option value="US">USA</option>
-                  <option value="UK">UK</option>
-                  <option value="TR">Turkey</option>
-                  <option value="CA">Canada</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-box__single-group">
-                <label for="form-address-1">Street Address</label>
-                <input type="text" id="form-address-1" placeholder="House number and street name">
-                <input type="text" class="m-t-10" id="form-address-2" placeholder="Apartment, suite, unit etc.">
+                <label for="form-address-1">* Street Address</label>
+                <input formControlName="address" type="text" id="form-address-1"
+                  placeholder="House number and street name">
+                <span *ngIf="(checkoutForm.get('address')?.invalid || checkoutForm.get('address')?.errors?.['required'])
+                  && (checkoutForm.get('address')?.dirty || checkoutForm.get('address')?.touched)"
+                  class="formValidation">
+                  Please enter your address!</span>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-box__single-group">
-                <label for="form-state">* Region / State</label>
+                <label for="form-state">Province / City</label>
                 <select id="form-state">
-                  <option value="Dha" selected>Dhaka</option>
-                  <option value="Kha">Khulna</option>
-                  <option value="Raj">Rajshahi</option>
-                  <option value="Syl">Sylet</option>
-                  <option value="Chi">Chittagong</option>
+                  <option value="Dha" selected>Choose</option>
+                  <option value="Kha">Hà Nội</option>
+                  <option value="Raj">Đà Nẵng</option>
+                  <option value="Syl">TP. Hồ Chí Minh</option>
+                  <option value="Chi">Phú Thọ</option>
                 </select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-box__single-group">
-                <label for="form-zipcode">* Zip/Postal Code</label>
+                <label for="form-zipcode">Zip/Postal Code</label>
                 <input type="text" id="form-zipcode">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-box__single-group">
-                <label for="form-phone">Phone</label>
-                <input type="text" id="form-phone">
+                <label for="form-phone">* Phone</label>
+                <input formControlName="phone" type="text" id="form-phone">
+                <span *ngIf="(checkoutForm.get('phone')?.invalid || checkoutForm.get('phone')?.errors?.['required'])
+                  && (checkoutForm.get('phone')?.dirty || checkoutForm.get('phone')?.touched)" class="formValidation">
+                  Please enter your phone number!</span>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-box__single-group">
-                <label for="form-email">Email Address</label>
-                <input type="email" id="form-email">
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="m-tb-20">
-                <label for="check-account">
-                  <input type="checkbox" name="check-account" class="creat-account" id="check-account">
-                  <span>Create an account?</span>
-                </label>
-                <div class="toogle-form open-create-account">
-                  <div class="form-box__single-group">
-                    <label for="form-email-new-account">Email Address</label>
-                    <input type="email" id="form-email-new-account">
-                  </div>
-                  <div class="form-box__single-group">
-                    <label for="form-password-new-account">Email Address</label>
-                    <input type="password" id="form-password-new-account">
-                  </div>
-                  <div class="from-box__buttons m-t-25">
-                    <button class="btn btn--box btn--small btn--blue btn--uppercase btn--weight"
-                      type="submit">REGISTER</button>
-                  </div>
-                </div>
+                <label for="form-email">* Email Address</label>
+                <input formControlName="email" type="email" id="form-email">
+                <span *ngIf="(checkoutForm.get('email')?.invalid || checkoutForm.get('email')?.errors?.['required'])
+                  && (checkoutForm.get('email')?.dirty || checkoutForm.get('email')?.touched)" class="formValidation">
+                  Please enter your email!</span>
               </div>
             </div>
             <div class="col-md-12">
@@ -121,88 +88,6 @@
                   placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
               </div>
             </div>
-            <!-- Add Another Shipping Address -->
-            <div class="col-md-12">
-              <div class="m-tb-20">
-                <label for="shipping-account">
-                  <input type="checkbox" name="check-account" class="shipping-account" id="shipping-account">
-                  <span>Ship to a different address?</span>
-                </label>
-                <div class="toogle-form open-shipping-account">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-box__single-group">
-                        <label for="shipping-form-first-name">First Name</label>
-                        <input type="text" id="shipping-form-first-name">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-box__single-group">
-                        <label for="shipping-form-last-name">Last Name</label>
-                        <input type="text" id="shipping-form-last-name">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-box__single-group">
-                        <label for="shipping-form-company-name">Company Name</label>
-                        <input type="text" id="shipping-form-company-name">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-box__single-group">
-                        <label for="shipping-form-country">* Country</label>
-                        <select id="shipping-form-country">
-                          <option value="select-country" selected>Select a country</option>
-                          <option value="BD">Bangladesh</option>
-                          <option value="US">USA</option>
-                          <option value="UK">UK</option>
-                          <option value="TR">Turkey</option>
-                          <option value="CA">Canada</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-box__single-group">
-                        <label for="shipping-form-address-1">Street Address</label>
-                        <input type="text" id="shipping-form-address-1" placeholder="House number and street name">
-                        <input type="text" class="m-t-10" id="shipping-form-address-2"
-                          placeholder="Apartment, suite, unit etc.">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-box__single-group">
-                        <label for="shipping-form-state">* Region / State</label>
-                        <select id="shipping-form-state">
-                          <option value="Dha" selected>Dhaka</option>
-                          <option value="Kha">Khulna</option>
-                          <option value="Raj">Rajshahi</option>
-                          <option value="Syl">Sylet</option>
-                          <option value="Chi">Chittagong</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-box__single-group">
-                        <label for="shipping-form-zipcode">* Zip/Postal Code</label>
-                        <input type="text" id="shipping-form-zipcode">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-box__single-group">
-                        <label for="shipping-form-phone">Phone</label>
-                        <input type="text" id="shipping-form-phone">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-box__single-group">
-                        <label for="shipping-form-email">Email Address</label>
-                        <input type="email" id="shipping-form-email">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- End Another Shipping Address -->
           </div>
         </form>
       </div> <!-- End Client Shipping Address -->
@@ -220,22 +105,23 @@
                 <h6 class="your-order-top-right">Total</h6>
               </div>
               <ul class="your-order-middle">
-                <li class="d-flex justify-content-between">
-                  <span class="your-order-middle-left">Product Name X 1</span>
-                  <span class="your-order-middle-right">$329</span>
-                </li>
-                <li class="d-flex justify-content-between">
-                  <span class="your-order-middle-left">Product Name X 1</span>
-                  <span class="your-order-middle-right">$329</span>
+                <li *ngFor="let item of items; let i = index" class="d-flex justify-content-between">
+                  <span class="your-order-middle-left">{{item.productName}} x{{item.qtyTotal}}</span>
+                  <span class="your-order-middle-right">{{(item.priceOut * (100 -
+                    item.discount)/100*(item.qtyTotal)).toLocaleString('vi-VN', {style : 'currency', currency :
+                    'VND'})}}</span>
                 </li>
               </ul>
               <div class="your-order-bottom d-flex justify-content-between">
                 <h6 class="your-order-bottom-left">Shipping</h6>
-                <span class="your-order-bottom-right">Free shipping</span>
+                <span class="your-order-bottom-right">{{shipFee.toLocaleString('vi-VN', {style : 'currency', currency :
+                  'VND'})}}</span>
               </div>
               <div class="your-order-total d-flex justify-content-between">
                 <h5 class="your-order-total-left">Total</h5>
-                <h5 class="your-order-total-right">$329</h5>
+                <h5 class="your-order-total-right">{{(total + shipFee).toLocaleString('vi-VN', {style : 'currency',
+                  currency :
+                  'VND'})}}</h5>
               </div>
 
               <div class="payment-method">
@@ -295,8 +181,8 @@
             </div>
           </div>
 
-          <button class="btn btn--block btn--small btn--blue btn--uppercase btn--weight" type="submit">PLACE
-            ORDER</button>
+          <button class="btn btn--block btn--small btn--blue btn--uppercase btn--weight" type="submit"
+            form="myForm">PLACE ORDER</button>
         </div>
       </div> <!-- End Order Wrapper -->
     </div>
@@ -304,3 +190,71 @@
 </main> <!-- ::::::  End  Main Container Section  ::::::  -->
 <!-- material-scrolltop button -->
 <button class="material-scrolltop" type="button"></button>
+
+<!-- ::::::  Start Popup Add Cart ::::::  -->
+<div id="offcanvas-add-cart__box" class="offcanvas offcanvas-cart offcanvas-add-cart">
+  <div class="offcanvas-add-cart__top m-b-40">
+    <span class="offcanvas-add-cart__top-text"><i class="icon-shopping-cart"></i> Total Items: {{items.length}}</span>
+    <button class=" offcanvas-close">&times;</button>
+  </div>
+  <!-- Start Add Cart Item Box-->
+  <ul class="offcanvas-add-cart__menu">
+    <!-- Start Single Add Cart Item-->
+    <li *ngFor="let item of items; let i = index" class="offcanvas-add-cart__list pos-relative">
+      <div class="offcanvas-add-cart__img-box pos-relative">
+        <a [routerLink]="['/product']" [queryParams]="{id: item.productId}"
+          class="offcanvas-add-cart__img-link img-responsive"><img [src]="item.images[0]" alt=""
+            class="add-cart__img"></a>
+        <span class="offcanvas-add-cart__item-count pos-absolute">{{item.qtyTotal}}x</span>
+      </div>
+      <div class="offcanvas-add-cart__detail">
+        <a [routerLink]="['/product']" [queryParams]="{id: item.productId}"
+          class="offcanvas-add-cart__link">{{item.productName}}</a>
+        <span #subTotalWrap class="offcanvas-add-cart__price">{{(item.priceOut * (100 -
+          item.discount)/100).toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}}</span>
+        <!-- <span class="offcanvas-add-cart__info">Color: {{item.colorName}}</span> -->
+        <div>
+          <input [(ngModel)]="item.qtyTotal" [ngModelOptions]="{standalone: true}" min="1" type="number"
+            value="{{ item.qtyTotal }}" name="" class="form-control" (change)="changeSubtotal(item ,i)" />
+        </div>
+
+      </div>
+      <button (click)="removeFromCart(item)" class="offcanvas-add-cart__item-dismiss pos-absolute">&times;</button>
+    </li> <!-- Start Single Add Cart Item-->
+  </ul> <!-- Start Add Cart Item Box-->
+  <!-- Start Add Cart Checkout Box-->
+  <div class="offcanvas-add-cart__checkout-box-bottom">
+    <!-- Start offcanvas Add Cart Checkout Info-->
+    <ul class="offcanvas-add-cart__checkout-info">
+      <!-- <li class="offcanvas-add-cart__checkout-list">
+        <span class="offcanvas-add-cart__checkout-left-info">Subtotal</span>
+        <span class="offcanvas-add-cart__checkout-right-info">{{total.toLocaleString('vi-VN', {style : 'currency',
+          currency : 'VND'})}}</span>
+      </li>
+      <li class="offcanvas-add-cart__checkout-list">
+        <span class="offcanvas-add-cart__checkout-left-info">Shipping</span>
+        <span class="offcanvas-add-cart__checkout-right-info">{{shipFee.toLocaleString('vi-VN', {style : 'currency',
+          currency : 'VND'})}}</span>
+      </li>
+
+      <li class="offcanvas-add-cart__checkout-list">
+        <span class="offcanvas-add-cart__checkout-left-info">Taxes</span>
+        <span class="offcanvas-add-cart__checkout-right-info">{{tax.toLocaleString('vi-VN', {style : 'currency',
+          currency : 'VND'})}}</span>
+      </li>  -->
+      <!-- Start Single Add Cart Checkout Info-->
+      <li class="offcanvas-add-cart__checkout-list">
+        <span class="offcanvas-add-cart__checkout-left-info">Total</span>
+        <span class="offcanvas-add-cart__checkout-right-info">{{total.toLocaleString('vi-VN', {style :
+          'currency', currency : 'VND'})}}</span>
+      </li> <!-- End Single Add Cart Checkout Info-->
+    </ul> <!-- End offcanvas Add Cart Checkout Info-->
+
+    <div class="offcanvas-add-cart__btn-checkout">
+      <a [routerLink]="['/checkout']"
+        class="btn btn--block btn--box btn--gray btn--large btn--uppercase btn--weight">Checkout</a>
+    </div>
+  </div> <!-- End Add Cart Checkout Box-->
+</div> <!-- :::::: End Popup Add Cart :::::: -->
+
+<div class="offcanvas-overlay"></div>
