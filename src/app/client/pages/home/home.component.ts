@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { BrandService } from '../../../services/brand.service';
 import { SliderService } from '../../../services/slider.service';
 import { ProductService } from '../../../services/product.service';
+import { CartService } from '../../../services/cart.service';
+import { ColorService } from '../../../services/color.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +18,17 @@ import { ProductService } from '../../../services/product.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  @ViewChildren('subTotalWrap') subTotalItems!: QueryList<ElementRef>;
+  @ViewChildren('subTotalWrap_existing')
+  subTotalItems_existing!: QueryList<ElementRef>;
+
   constructor(
     private brandService: BrandService,
     private sliderService: SliderService,
-    private productService: ProductService
+    private productService: ProductService,
+    public cartService: CartService,
+    private colorService: ColorService,
+    private toast: NgToastService
   ) {}
 
   saleDate: string = '2022/06/21';
@@ -23,6 +39,78 @@ export class HomeComponent implements OnInit {
   newArrivalProducts: any[] = [];
   featuredProducts: any[] = [];
   bestSellerProducts: any[] = [];
+  //cart
+  items: any[] = [];
+  // shipFee: number = 50000;
+  // tax: number = 0;
+
+  //----- add item to cart
+  addToCart(item: any): void {
+    if (!this.cartService.itemInCart(item)) {
+      item.qtyTotal = 1;
+      item.colorSelected = item.colorIds[0];
+      item.variationCost = (item.priceOut * (100 - item.discount)) / 100;
+      // item = {
+      //   ...item,
+      //   qtyTotal: 1,
+      // };
+      this.cartService.addToCart(item); //add items in cart
+      this.items = [...this.cartService.getItems()];
+    }
+    // Toast
+    this.toast.success({
+      detail: 'Success',
+      summary: '🎉 Product has been added to the cart',
+      sticky: true,
+      position: 'tr',
+      duration: 3000,
+    });
+  }
+
+  changeSubtotal(item: any, index: number): void {
+    const qty = item.qtyTotal;
+    const amt = item.variationCost;
+    const subTotal = amt * qty;
+    const subTotal_converted = subTotal.toLocaleString('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+    });
+
+    this.subTotalItems.toArray()[index].nativeElement.innerHTML =
+      subTotal_converted;
+    this.cartService.saveCart();
+  }
+
+  get total() {
+    return this.items.reduce(
+      (sum, x) => ({
+        qtyTotal: 1,
+        variationCost: sum.variationCost + x.qtyTotal * x.variationCost,
+      }),
+      { qtyTotal: 1, variationCost: 0 }
+    ).variationCost;
+  }
+
+  //----- remove specific item
+  removeFromCart(item: any) {
+    this.cartService.removeItem(item);
+    this.items = this.cartService.getItems();
+    // Toast
+    this.toast.success({
+      detail: 'Success',
+      summary: 'Product has been removed from cart',
+      sticky: true,
+      position: 'tr',
+      duration: 3000,
+    });
+  }
+
+  //----- clear cart item
+  clearCart(items: any) {
+    // this.items.forEach((item, index) => this.cartService.removeItem(index));
+    this.cartService.clearCart(items);
+    this.items = [...this.cartService.getItems()];
+  }
 
   ngOnInit(): void {
     this.sliderService.getAll().subscribe(
@@ -47,6 +135,10 @@ export class HomeComponent implements OnInit {
     this.getNewArrivalProduct();
     this.getFeaturedProducts();
     this.getBestSellerProducts();
+
+    // cart
+    this.cartService.loadCart();
+    this.items = this.cartService.getItems();
   }
 
   getAllProducts(): void {
@@ -112,5 +204,12 @@ export class HomeComponent implements OnInit {
       });
     }
     return res;
+  }
+
+  getColorName(id: string): any {
+    this.colorService.getById(id).subscribe((res) => {
+      console.log(res.name);
+      return res.name;
+    });
   }
 }
