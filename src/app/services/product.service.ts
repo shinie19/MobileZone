@@ -28,4 +28,13 @@ export class ProductService {
   getBestSellerProducts(): Observable<any> {
     return this.http.get(`${this.BASE_URL}/best-seller-products`);
   }
+  add(product: any): Observable<any> {
+    return this.http.post(this.BASE_URL, product);
+  }
+  update(id: string, product: any): Observable<any> {
+    return this.http.put(`${this.BASE_URL}/${id}`, product);
+  }
+  remove(id: string): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/delete/${id}`);
+  }
 }

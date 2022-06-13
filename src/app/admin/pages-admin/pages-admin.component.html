@@ -241,118 +241,68 @@
               </div>
             </div>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" [routerLink]="['/admin/dashboard']">
+          <li [routerLink]="['/admin']" class="nav-item">
+            <a class="nav-link">
               <i class="fa fa-home menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#brands" aria-expanded="false" aria-controls="brands">
+          <li [routerLink]="['/admin/brands']" class="nav-item">
+            <a class="nav-link">
               <i class="fas fa-tags menu-icon"></i>
-              <span class="menu-title">Brands</span>
-              <i class="menu-arrow"></i>
+              <span class="menu-title">Brands manager</span>
             </a>
-            <div class="collapse" id="brands">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">List of brands</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="#">Add new brand</a>
-                </li>
-              </ul>
-            </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#categories" aria-expanded="false"
-              aria-controls="categories">
-              <i class="fa fa-th-large menu-icon"></i>
-              <span class="menu-title">Categories</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="categories">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">List of categories</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="#">Add new Category</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#product-manager" aria-expanded="false"
-              aria-controls="product-manager">
+          <li [routerLink]="['/admin/products']" class="nav-item">
+            <a class="nav-link">
               <i class="fas fa-cube menu-icon"></i>
               <span class="menu-title">Products manager</span>
-              <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="product-manager">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">List of products</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="#">Add new product</a>
-                </li>
-              </ul>
-            </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#order-manager" aria-expanded="false"
-              aria-controls="order-manager">
+          <li [routerLink]="['/admin/orders']" class="nav-item">
+            <a class="nav-link">
               <i class="fa fa-shopping-cart menu-icon"></i>
               <span class="menu-title">Orders manager</span>
-              <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="order-manager">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">List of orders</a></li>
-              </ul>
-            </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#user-manager" aria-expanded="false"
-              aria-controls="user-manager">
+          <li [routerLink]="['/admin/blogs']" class="nav-item">
+            <a class="nav-link">
+              <i class="fa fa-th-large menu-icon"></i>
+              <span class="menu-title">Blogs manager</span>
+            </a>
+          </li>
+          <li [routerLink]="['/admin/users']" class="nav-item">
+            <a class="nav-link">
               <i class="fa far fa-user menu-icon"></i>
               <span class="menu-title">Users manager</span>
-              <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="user-manager">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">List of users</a></li>
-              </ul>
-            </div>
+          </li>
+          <li [routerLink]="['/admin/sliders']" class="nav-item">
+            <a class="nav-link">
+              <i class="fa fa-image menu-icon"></i>
+              <span class="menu-title">Sliders manager</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#gifts-manager" aria-expanded="false"
-              aria-controls="gifts-manager">
+            <a class="nav-link">
               <i class="fa fa-gift menu-icon"></i>
               <span class="menu-title">Gifts manager</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="gifts-manager">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">List of gifts</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fa fa-image menu-icon"></i>
-              <span class="menu-title">Banner manager</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link">
               <i class="fa fa-location-arrow menu-icon"></i>
               <span class="menu-title">Address manager</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link">
               <i class="far fa-comments menu-icon"></i>
               <span class="menu-title">Comments manager</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link">
               <i class="far fa-envelope menu-icon"></i>
               <span class="menu-title">Feedback manager</span>
             </a>
@@ -603,8 +553,8 @@
         <!-- content-wrapper ends -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a
-                href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2022 Anh Nguyen
+              Ngoc. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
                 class="far fa-heart text-danger"></i></span>
           </div>

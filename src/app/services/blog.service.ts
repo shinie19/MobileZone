@@ -5,19 +5,22 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class SliderService {
-  BASE_URL = 'http://localhost:8089/api/slider';
+export class BlogService {
+  BASE_URL = 'http://localhost:8089/api/blog';
 
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}`);
+    return this.http.get(this.BASE_URL);
   }
   getById(id: string): Observable<any> {
     return this.http.get(`${this.BASE_URL}/${id}`);
   }
-  add(slide: any): Observable<any> {
-    return this.http.post(this.BASE_URL, slide);
+  add(blog: any): Observable<any> {
+    return this.http.post(this.BASE_URL, blog);
+  }
+  update(id: string, blog: any): Observable<any> {
+    return this.http.put(`${this.BASE_URL}/${id}`, blog);
   }
   remove(id: string): Observable<any> {
     return this.http.get(`${this.BASE_URL}/delete/${id}`);

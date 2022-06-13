@@ -19,4 +19,13 @@ export class UserService {
   getByEmail(email: string): Observable<any> {
     return this.http.get(`${this.BASE_URL}/email/?email=${email}`);
   }
+  add(user: any): Observable<any> {
+    return this.http.post(this.BASE_URL, user);
+  }
+  // update(id: string, user: any): Observable<any> {
+  //   return this.http.put(`${this.BASE_URL}/${id}`, user);
+  // }
+  remove(id: string): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/delete/${id}`);
+  }
 }

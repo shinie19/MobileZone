@@ -13,4 +13,16 @@ export class BrandService {
   getAll(): Observable<any> {
     return this.http.get(`${this.BASE_URL}`);
   }
+  getById(id: string): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/${id}`);
+  }
+  add(brand: any): Observable<any> {
+    return this.http.post(this.BASE_URL, brand);
+  }
+  update(id: string, brand: any): Observable<any> {
+    return this.http.put(`${this.BASE_URL}/${id}`, brand);
+  }
+  remove(id: string): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/delete/${id}`);
+  }
 }

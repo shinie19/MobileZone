@@ -16,4 +16,10 @@ export class ColorService {
   getById(id: string): Observable<any> {
     return this.http.get(`${this.BASE_URL}/${id}`);
   }
+  add(color: any): Observable<any> {
+    return this.http.post(this.BASE_URL, color);
+  }
+  remove(id: string): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/delete/${id}`);
+  }
 }
